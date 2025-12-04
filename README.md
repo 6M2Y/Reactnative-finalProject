@@ -102,7 +102,7 @@ Make sure backend URL is updated in apiClient.ts as well as environment variable
 ```
 
 ```
-##Folder structure
+## Folder structure
 <pre>
 FAMILYFLOW/
 ├── server/

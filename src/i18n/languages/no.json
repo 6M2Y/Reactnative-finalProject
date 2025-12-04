@@ -1,0 +1,23 @@
+{
+  "login": {
+    "title": "Logg inn",
+    "email": "E-post",
+    "password": "Passord",
+    "button": "Logg inn",
+    "registerLink": "Gå til registrering"
+  },
+  "settings": {
+    "title": "Innstillinger",
+    "name": "Navn",
+  "members":"Medlemmer",
+    "profile": "Profil",
+    "language": "Språk",
+    "theme": "Mørk modus",
+    "logout": "Logg ut",
+    "deleteUser":"Slett konto",
+    "appInfo": "FamilyFlow v1.0"
+  },
+  "home": {
+    "welcome": "Velkommen, {{name}}!"
+  }
+}

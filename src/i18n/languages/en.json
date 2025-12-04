@@ -1,0 +1,23 @@
+{
+  "login": {
+    "title": "Login",
+    "email": "Email",
+    "password": "Password",
+    "button": "Login",
+    "registerLink": "Go to Register"
+  },
+  "settings": {
+    "title": "Settings",
+    "profile": "Profile",
+    "name": "Name",
+    "members":"Memebers",
+    "language": "Language",
+    "theme": "Dark Mode",
+    "logout": "Log out",
+    "deleteUser": "Delete Account",
+    "appInfo": "FamilyFlow v1.0"
+  },
+  "home": {
+    "welcome": "Welcome, {{name}}!"
+  }
+}

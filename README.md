@@ -102,7 +102,8 @@ Make sure backend URL is updated in apiClient.ts as well as environment variable
 ```
 
 ```
-md
+##Folder structure
+<pre>
 FAMILYFLOW/
 ├── server/
 │ ├── node_modules/
@@ -226,4 +227,4 @@ FAMILYFLOW/
 │ └── .watchmanconfig
 │
 └── package.json
-
+</pre>

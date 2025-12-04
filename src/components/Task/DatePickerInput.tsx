@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import {
   View,
   Text,
@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { ThemeContext } from '../../context/ThemeContext';
 
 interface DatePickerInputProps {
   label: string;
@@ -43,6 +44,7 @@ const DatePickerInput: React.FC<DatePickerInputProps> = ({
   onConfirm,
 }) => {
   const [showPicker, setShowPicker] = useState(false);
+  const { theme } = useContext(ThemeContext);
 
   const handleDateChange = (event: any, selectedDate?: Date) => {
     setShowPicker(false);
@@ -51,7 +53,9 @@ const DatePickerInput: React.FC<DatePickerInputProps> = ({
 
   return (
     <View style={styles.container}>
-      <Text style={styles.label}>{label}</Text>
+      <Text style={[styles.label, { color: theme.textSecondary }]}>
+        {label}
+      </Text>
 
       <TouchableOpacity
         onPress={() => setShowPicker(true)}

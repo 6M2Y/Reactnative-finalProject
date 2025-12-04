@@ -1,17 +1,19 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import { AuthContext } from '../context/AuthContextProvider';
 import MainTabs from './MainTabs';
 import AuthStack from './AuthStack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import OnboardingScreen from '../screens/OnboardingScreen';
 import { createStackNavigator } from '@react-navigation/stack';
+import { ThemeContext } from '../context/ThemeContext';
 
 const stack = createStackNavigator();
 
 export default function AppNavigator() {
   const { user }: any = useContext(AuthContext); // Access user from context
   const [onboardingShown, setonboardingShown] = useState<boolean | null>(null); //to set onboardingsetting
+  const { theme, isDark }: any = useContext(ThemeContext);
 
   useEffect(() => {
     const checkOnboarding = async () => {
@@ -20,11 +22,25 @@ export default function AppNavigator() {
     };
     checkOnboarding();
   }, []);
+
   // Return a loading screen if onboarding check isn't done yet
   if (onboardingShown === null) return null;
 
+  const navTheme = {
+    ...DefaultTheme,
+    dark: isDark,
+    colors: {
+      ...DefaultTheme.colors,
+      background: theme.background,
+      card: theme.card,
+      text: theme.text,
+      border: theme.border,
+      primary: theme.accent,
+    },
+  };
+
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={navTheme}>
       <stack.Navigator screenOptions={{ headerShown: false }}>
         {/* CASE 1: Show Onboarding if not shown yet */}
         {!onboardingShown ? (

@@ -58,13 +58,13 @@ const SettingScreen = () => {
               <Text style={[styles.text, { color: theme.textSecondary }]}>
                 {t('settings.name')}: {user.name}
               </Text>
-              <Text style={[styles.text, { color: theme.text }]}>
+              <Text style={[styles.text, { color: theme.textSecondary }]}>
                 {t('settings.email')}: {user.email}
               </Text>
 
               {user.role === 'parent' && (
                 <>
-                  <Text style={[styles.text, { color: theme.text }]}>
+                  <Text style={[styles.text, { color: theme.textSecondary }]}>
                     {t('settings.members')}:
                   </Text>
 
@@ -74,7 +74,10 @@ const SettingScreen = () => {
                     members.map(m => (
                       <Text
                         key={m._id}
-                        style={[styles.memberText, { color: theme.text }]}
+                        style={[
+                          styles.memberText,
+                          { color: theme.textSecondary },
+                        ]}
                       >
                         <Ionicons name="person" size={14} /> {m.name} – ⭐{' '}
                         {m.points}
@@ -85,7 +88,7 @@ const SettingScreen = () => {
               )}
 
               {user.role === 'child' && (
-                <Text style={{ color: theme.text }}>
+                <Text style={{ color: theme.textSecondary }}>
                   Your Points: ⭐ {user.point}
                 </Text>
               )}

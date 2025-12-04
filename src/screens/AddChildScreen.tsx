@@ -1,65 +1,144 @@
 import React, { useContext, useState } from 'react';
-import { View, Text, TextInput, Button, Alert, StyleSheet } from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  Alert,
+  StyleSheet,
+} from 'react-native';
 import { AuthContext } from '../context/AuthContextProvider';
+import { ThemeContext } from '../context/ThemeContext';
 
 export default function AddChildScreen({ navigation }: any) {
   const { user, register }: any = useContext(AuthContext);
+  const { theme }: any = useContext(ThemeContext);
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleAddChild = async () => {
+    if (!name || !email || !password) {
+      Alert.alert('Missing fields', 'Please fill in all fields.');
+      return;
+    }
+
     try {
       await register(name, email, password, 'child', user.familyCode);
-      Alert.alert('Child added successfully');
+      Alert.alert('Success', 'Child account created');
       navigation.goBack();
     } catch (err: any) {
-      Alert.alert('Error adding child', err.message);
+      Alert.alert('Error', err.message || 'Unable to add child');
     }
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.header}>Add New Child</Text>
+    <View style={[styles.container, { backgroundColor: theme.background }]}>
+      <Text style={[styles.header, { color: theme.text }]}>Add New Child</Text>
 
+      {/* NAME */}
       <TextInput
-        placeholder="Child name"
+        placeholder="Child's Name"
+        placeholderTextColor={theme.textSecondary}
         value={name}
         onChangeText={setName}
-        style={styles.input}
+        style={[
+          styles.input,
+          {
+            backgroundColor: theme.card,
+            borderColor: theme.border,
+            color: theme.text,
+          },
+        ]}
       />
 
+      {/* EMAIL */}
       <TextInput
-        placeholder="Child email"
+        placeholder="Child's Email"
+        placeholderTextColor={theme.textSecondary}
         value={email}
         keyboardType="email-address"
         autoCapitalize="none"
         onChangeText={setEmail}
-        style={styles.input}
+        style={[
+          styles.input,
+          {
+            backgroundColor: theme.card,
+            borderColor: theme.border,
+            color: theme.text,
+          },
+        ]}
       />
 
+      {/* PASSWORD */}
       <TextInput
         placeholder="Password"
+        placeholderTextColor={theme.textSecondary}
         secureTextEntry
         value={password}
         onChangeText={setPassword}
-        style={styles.input}
+        style={[
+          styles.input,
+          {
+            backgroundColor: theme.card,
+            borderColor: theme.border,
+            color: theme.text,
+          },
+        ]}
       />
 
-      <Button title="Create Account" onPress={handleAddChild} />
+      {/* FAMILY CODE DISPLAY */}
+      <Text style={[styles.familyCode, { color: theme.textSecondary }]}>
+        Family Code:{' '}
+        <Text style={{ color: theme.accent }}>{user.familyCode}</Text>
+      </Text>
+
+      {/* BUTTON */}
+      <TouchableOpacity
+        style={[styles.button, { backgroundColor: theme.accent }]}
+        onPress={handleAddChild}
+      >
+        <Text style={styles.buttonText}>Create Child Account</Text>
+      </TouchableOpacity>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { padding: 20, flex: 1 },
-  header: { fontSize: 24, fontWeight: '700', marginBottom: 20 },
+  container: { padding: 25, flex: 1, justifyContent: 'center' },
+
+  header: {
+    fontSize: 28,
+    fontWeight: '800',
+    marginBottom: 25,
+    textAlign: 'center',
+  },
+
   input: {
     borderWidth: 1,
-    borderColor: '#ccc',
-    padding: 12,
-    borderRadius: 10,
-    marginBottom: 12,
+    padding: 14,
+    borderRadius: 12,
+    marginBottom: 15,
+    fontSize: 16,
+  },
+
+  familyCode: {
+    fontSize: 14,
+    marginBottom: 20,
+    textAlign: 'center',
+  },
+
+  button: {
+    paddingVertical: 14,
+    borderRadius: 12,
+    alignItems: 'center',
+    marginTop: 10,
+  },
+
+  buttonText: {
+    color: '#FFF',
+    fontWeight: '700',
+    fontSize: 16,
   },
 });

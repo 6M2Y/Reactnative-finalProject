@@ -100,11 +100,12 @@ const HomeScreen = ({ navigation }: any) => {
       style={[styles.container, { backgroundColor: theme.background }]}
     >
       <Text style={[styles.welcomeText, { color: theme.textSecondary }]}>
-        Welcome, <Text style={{ color: theme.accent }}>{user?.name}</Text>
+        {t('home.welcome')}{' '}
+        <Text style={{ color: theme.accent }}>{user?.name}</Text>
       </Text>
 
       <Text style={[styles.subtitle, { color: theme.textSecondary }]}>
-        Here's your dashboard summary
+        {t('home.title')}
       </Text>
 
       {loading ? (
@@ -132,7 +133,7 @@ const HomeScreen = ({ navigation }: any) => {
 
           {/* QUICK ACTIONS */}
           <Text style={[styles.sectionHeader, { color: theme.textSecondary }]}>
-            Quick Actions
+            {t('home.action')}
           </Text>
 
           <View style={styles.quickRow}>
@@ -140,7 +141,7 @@ const HomeScreen = ({ navigation }: any) => {
               <QuickButton
                 theme={theme}
                 icon="create-outline"
-                label="Create"
+                label={t('home.create')}
                 onPress={() =>
                   navigation.navigate(taskTabName, { screen: 'TaskForm' })
                 }

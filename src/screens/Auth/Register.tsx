@@ -1,108 +1,202 @@
 import React, { useContext, useState } from 'react';
-import { Alert, Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import {
+  Alert,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+  View,
+} from 'react-native';
 import { AuthContext } from '../../context/AuthContextProvider';
+import { ThemeContext } from '../../context/ThemeContext';
 import { Picker } from '@react-native-picker/picker';
+import { useTranslation } from 'react-i18next';
 
 const Register = ({ navigation }: any) => {
-  const { register }: any = useContext(AuthContext); // Access register function from context
-  const [name, setName] = useState<string>('');
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-  const [role, setRole] = useState<'parent' | 'child'>('child');
-  const [familyCode, setFamilyCode] = useState<String>('');
+  const { register }: any = useContext(AuthContext);
+  const { theme }: any = useContext(ThemeContext);
+  const { t } = useTranslation();
 
-  const handleRegister = async (): Promise<void> => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [role, setRole] = useState<'parent' | 'child'>('child');
+  const [familyCode, setFamilyCode] = useState('');
+
+  const handleRegister = async () => {
     try {
       await register(name, email, password, role, familyCode);
-      Alert.alert('User registered successfully');
-      navigation.navigate('Login'); // Navigate to Login screen on successful registration
+      Alert.alert(t('register.success'));
+      navigation.navigate('Login');
     } catch (error: any) {
-      Alert.alert('Registration error:' + error.message);
+      Alert.alert(t('register.error'), error.message);
     }
   };
 
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Name</Text>
+    <View style={[styles.container, { backgroundColor: theme.background }]}>
+      <Text style={[styles.title, { color: theme.text }]}>
+        {t('register.title')}
+      </Text>
+
+      {/* NAME */}
       <TextInput
-        style={{
-          height: 40,
-          borderColor: 'gray',
-          borderWidth: 1,
-          marginBottom: 10,
-          width: 200,
-          paddingHorizontal: 10,
-        }}
+        placeholder={t('register.name')}
+        placeholderTextColor={theme.textSecondary}
         value={name}
         onChangeText={setName}
+        style={[
+          styles.input,
+          {
+            backgroundColor: theme.card,
+            color: theme.text,
+            borderColor: theme.border,
+          },
+        ]}
       />
-      <Text>Email</Text>
+
+      {/* EMAIL */}
       <TextInput
-        style={{
-          height: 40,
-          borderColor: 'gray',
-          borderWidth: 1,
-          marginBottom: 10,
-          width: 200,
-          paddingHorizontal: 10,
-        }}
-        value={email}
+        placeholder={t('register.email')}
+        placeholderTextColor={theme.textSecondary}
         keyboardType="email-address"
         autoCapitalize="none"
-        autoCorrect={false}
+        value={email}
         onChangeText={setEmail}
+        style={[
+          styles.input,
+          {
+            backgroundColor: theme.card,
+            color: theme.text,
+            borderColor: theme.border,
+          },
+        ]}
       />
-      <Text>Password</Text>
+
+      {/* PASSWORD */}
       <TextInput
-        style={{
-          height: 40,
-          borderColor: 'gray',
-          borderWidth: 1,
-          marginBottom: 10,
-          width: 200,
-          paddingHorizontal: 10,
-        }}
+        placeholder={t('register.password')}
+        placeholderTextColor={theme.textSecondary}
+        secureTextEntry
         value={password}
         onChangeText={setPassword}
-        secureTextEntry
+        style={[
+          styles.input,
+          {
+            backgroundColor: theme.card,
+            color: theme.text,
+            borderColor: theme.border,
+          },
+        ]}
       />
-      {/* picker for role selection */}
-      <View style={styles.dropDownContainer}>
-        <Text>Select your role:</Text>
-        <View style={styles.pickerContainer}>
-          <Picker selectedValue={role} onValueChange={value => setRole(value)}>
-            <Picker.Item label="Parent" value="parent" />
-            <Picker.Item label="Child" value="child" />
-          </Picker>
-        </View>
+
+      {/* ROLE PICKER */}
+      <Text style={[styles.label, { color: theme.text }]}>
+        {t('register.role')}
+      </Text>
+      <View
+        style={[
+          styles.pickerContainer,
+          { borderColor: theme.border, backgroundColor: theme.card },
+        ]}
+      >
+        <Picker
+          selectedValue={role}
+          dropdownIconColor={theme.text}
+          onValueChange={value => setRole(value)}
+          style={{ color: theme.text }}
+        >
+          <Picker.Item label={t('register.role')} value="Role" />
+          <Picker.Item label={t('register.parent')} value="parent" />
+          <Picker.Item label={t('register.child')} value="child" />
+        </Picker>
       </View>
+
+      {/* FAMILY CODE FOR CHILD */}
       {role === 'child' && (
         <TextInput
-          placeholder="Enter family code"
+          placeholder={t('register.familyCode')}
+          placeholderTextColor={theme.textSecondary}
           value={familyCode}
           onChangeText={setFamilyCode}
-          style={{ borderWidth: 1, width: 200, marginBottom: 10, padding: 10 }}
+          style={[
+            styles.input,
+            {
+              backgroundColor: theme.card,
+              color: theme.text,
+              borderColor: theme.border,
+            },
+          ]}
         />
       )}
-      <Button title="Register" onPress={handleRegister} />
-      <Text
-        style={{ marginTop: 20 }}
-        onPress={() => navigation.navigate('Login')}
+
+      {/* REGISTER BUTTON */}
+      <TouchableOpacity
+        style={[styles.button, { backgroundColor: theme.accent }]}
+        onPress={handleRegister}
       >
-        Already have an account? Login
-      </Text>{' '}
-      <Text>Register</Text>{' '}
+        <Text style={styles.buttonText}>{t('register.registerBtn')}</Text>
+      </TouchableOpacity>
+
+      {/* GO TO LOGIN */}
+      <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+        <Text style={[styles.link, { color: theme.accent }]}>
+          {t('register.loginLink')}
+        </Text>
+      </TouchableOpacity>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  dropDownContainer: {},
+  container: { flex: 1, paddingHorizontal: 30, justifyContent: 'center' },
+
+  title: {
+    fontSize: 32,
+    fontWeight: '800',
+    textAlign: 'center',
+    marginBottom: 25,
+  },
+
+  input: {
+    padding: 14,
+    borderWidth: 1,
+    borderRadius: 12,
+    marginBottom: 15,
+    fontSize: 16,
+  },
+
+  label: {
+    marginBottom: 6,
+    fontSize: 15,
+    fontWeight: '600',
+  },
+
   pickerContainer: {
     borderWidth: 1,
-    width: 200,
-    marginBottom: 20,
-    borderRadius: 4,
+    borderRadius: 12,
+    marginBottom: 15,
+  },
+
+  button: {
+    paddingVertical: 14,
+    borderRadius: 12,
+    alignItems: 'center',
+    marginTop: 10,
+  },
+
+  buttonText: {
+    color: '#fff',
+    fontWeight: '700',
+    fontSize: 16,
+  },
+
+  link: {
+    textAlign: 'center',
+    marginTop: 18,
+    fontSize: 15,
+    fontWeight: '600',
   },
 });
+
 export default Register;

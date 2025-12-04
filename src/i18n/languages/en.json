@@ -1,14 +1,25 @@
 {
+"bar":{
+  "home": "Home",
+  "tasks": "Tasks",
+  "myTask":"MyTask",
+  "children":"Children",
+  "setting": "Settings"
+},
+
   "login": {
     "title": "Login",
     "email": "Email",
     "password": "Password",
     "button": "Login",
-    "registerLink": "Go to Register"
+    "registerLink": "Don't have an account? Register",
+    "welcome": "Welcome",
+    "loginBtn": "Sign in"
   },
   "settings": {
     "title": "Settings",
     "profile": "Profile",
+    "email":"Email",
     "name": "Name",
     "members":"Memebers",
     "language": "Language",
@@ -18,6 +29,35 @@
     "appInfo": "FamilyFlow v1.0"
   },
   "home": {
-    "welcome": "Welcome, {{name}}!"
-  }
+    "welcome": "Welcome!",
+    "title":"Here's your dashboard summary",
+    "action": "Quick Actions",
+        "create":"Create",
+    "tasks": "Tasks",
+    "children": "Children"
+  },
+  "register": {
+  "title": "Create Account",
+  "name": "Full Name",
+  "email": "Email",
+  "password": "Password",
+  "role": "Select your role",
+  "parent": "Parent",
+  "child": "Child",
+  "familyCode": "Family Code",
+  "registerBtn": "Register",
+  "loginLink": "Already have an account? Login",
+  "success": "User registered successfully",
+  "error": "Registration error"
+},
+"taskForm":{
+  "formTitle":"Create New Task",
+  "title":"Title",
+  "desc":"Description",
+  "duedate":"Due Date",
+  "pts":"Points",
+  "recurrence": "Recurrence",
+  "assign": "Assign To",
+  "select":"Select Child"
+}
 }

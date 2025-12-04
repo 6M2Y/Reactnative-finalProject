@@ -12,6 +12,7 @@ import { AuthContext } from '../context/AuthContextProvider';
 import { useFamilyMembers } from '../hooks/useFamilyMembers';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { ThemeContext } from '../context/ThemeContext';
 
 const ChildLocationScreen = ({ navigation }: any) => {
   const { user }: any = useContext(AuthContext);
@@ -20,6 +21,8 @@ const ChildLocationScreen = ({ navigation }: any) => {
     loading,
     err,
   } = useFamilyMembers(user?.familyCode);
+
+  const { theme }: any = useContext(ThemeContext);
 
   const formatDate = (value: any) => {
     if (!value) return 'No location yet';
@@ -45,10 +48,14 @@ const ChildLocationScreen = ({ navigation }: any) => {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView
+      style={[styles.container, { backgroundColor: theme.background }]}
+    >
       {/* HEADER */}
       <View style={styles.headerRow}>
-        <Text style={styles.title}>Children Overview</Text>
+        <Text style={[styles.title, { color: theme.textSecondary }]}>
+          Children Overview
+        </Text>
 
         {/* Only parents see Add Child */}
         {user?.role === 'parent' && (
@@ -68,7 +75,7 @@ const ChildLocationScreen = ({ navigation }: any) => {
         contentContainerStyle={{ paddingBottom: 20 }}
         renderItem={({ item }) => (
           <TouchableOpacity
-            style={styles.card}
+            style={[styles.card, { backgroundColor: theme.card }]}
             onPress={() =>
               navigation.navigate('childLocationMap', { childLocData: item })
             }
@@ -84,16 +91,20 @@ const ChildLocationScreen = ({ navigation }: any) => {
             />
 
             <View style={{ flex: 1 }}>
-              <Text style={styles.name}>{item.name}</Text>
+              <Text style={[styles.name, { color: theme.textSecondary }]}>
+                {item.name}
+              </Text>
 
-              <Text style={styles.subtitle}>
+              <Text style={[styles.subtitle, { color: theme.textSecondary }]}>
                 Last seen: {formatDate(item.location?.updatedAt)}
               </Text>
 
               {/* Stats row */}
               <View style={styles.statsRow}>
-                <Text style={styles.statText}>⭐ {item.points} pts</Text>
-                <Text style={styles.statText}>
+                <Text style={[styles.statText, { color: theme.textSecondary }]}>
+                  ⭐ {item.points} pts
+                </Text>
+                <Text style={[styles.statText, { color: theme.textSecondary }]}>
                   ✅ {item.completedTasks || 0} tasks
                 </Text>
               </View>

@@ -1,13 +1,23 @@
 {
+  "bar":{
+  "home": "Hjem",
+  "tasks": "Oppgaver",
+  "myTask":"Min Oppgave",
+  "children":"Barn",
+  "setting": "Innstillinger"
+},
   "login": {
     "title": "Logg inn",
     "email": "E-post",
     "password": "Passord",
     "button": "Logg inn",
-    "registerLink": "Gå til registrering"
+    "registerLink": "Har du ingen konto? Registrer deg",
+    "welcome":"Velkommen",
+    "loginBtn": "Sign in"
   },
   "settings": {
     "title": "Innstillinger",
+    "email":"E-post",
     "name": "Navn",
   "members":"Medlemmer",
     "profile": "Profil",
@@ -18,6 +28,21 @@
     "appInfo": "FamilyFlow v1.0"
   },
   "home": {
-    "welcome": "Velkommen, {{name}}!"
-  }
+    "welcome": "Velkommen!",
+    "title":"Her er dashbord-oversikten din",
+    "action": "Hurtighandlinger",
+    "create":"Opprette",
+    "tasks": "Oppgaver",
+    "children": "Barn"
+  },
+  "taskForm":{
+  "formTitle":"Opprett en Ny Oppgave",
+    "title":"Tittle",
+  "desc":"Hva oppgave går ut på",
+  "duedate":"Frist Dato",
+  "pts":"Poeng",
+  "recurrence": "Gjentakelse",
+  "assign": "Tildel Til",
+  "select":"Velg Barn"
+}
 }

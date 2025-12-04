@@ -7,7 +7,7 @@ This app includes authentication, role-based access, task management, family gro
 
 ## Features
 
-###Family Roles
+### Family Roles
 
 Parent accounts
 
@@ -15,7 +15,7 @@ Child accounts
 
 Shared familyCode to join a household
 
-###Task Management
+### Task Management
 
 Parents create tasks and assign a child or leave unassigned so children can claim
 
@@ -27,35 +27,35 @@ Points system [only when the task is verified]
 
 Recurring tasks (daily/weekly/custom days) [underdevelopment] but parent can create tasks with a due date
 
-###Communication
+### Communication
 
 Comment thread on each task
 
 Parent ↔ Child conversation
 
-📍 GPS & Maps (Sensor Feature)
+### GPS & Maps (Sensor Feature)
 
 Children automatically send last known GPS location [Require google API, underdevelopment]
 
 Parents can view each child on a map [underdevelopment]
 
-###Onboarding Flow
+### Onboarding Flow
 
 First-time user intro screens
 
-###Internationalization
+### Internationalization
 
 English + Norwegian via react-i18next
 
 Language switch saved to AsyncStorage
 
-###UI & Theming
+### UI & Theming
 
 Clean modern layout
 
-Light/dark mode switch
+Light/dark mode switch. global context is used to apply settings
 
-###Navigation
+### Navigation
 
 Bottom tab navigation
 
@@ -71,26 +71,34 @@ Secure password hashing with bcrypt
 
 REST API for tasks, users, comments, family groups
 
-##Tech Stack
+## Tech Stack
+
 Layer Technologies
 Mobile App React Native • TypeScript • Axios • AsyncStorage • react-navigation
 Backend Node.js • Express • MongoDB • Mongoose • JWT
 Sensors react-native-geolocation-service
 UI/UX Lottie animations • Custom components
 
-#How to Run
+# How to Run
+
 Backend
 
 ```sh
 cd server
 npm install
 npm run dev
+```
 
+```sh
 Mobile App
 cd FamilyFlow
 npm install
 npm run start
 npm run android
+```
 
 Make sure backend URL is updated in apiClient.ts as well as environment variables
+
+```
+
 ```

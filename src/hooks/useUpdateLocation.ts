@@ -1,8 +1,3 @@
-
-//-----------------------------------------------
-//
-//
-
 import { useEffect } from 'react';
 import { Alert, PermissionsAndroid, Platform } from 'react-native';
 import Geolocation from "react-native-geolocation-service";

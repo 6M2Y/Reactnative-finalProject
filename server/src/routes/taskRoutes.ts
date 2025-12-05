@@ -50,10 +50,12 @@ taskRoutes.get('/', async (req: Request, res: Response): Promise<void> => {
 //post new  task
 taskRoutes.post('/', async (req: Request, res: Response):Promise<void> =>{
     const { title, description, assignedTo, status, points, dueDate, familyCode, recurrence, recurrenceDays } = req.body; // Destructure task details from request body
+
+     const finalAssignedTo = assignedTo === '' ? null : assignedTo;
     const newTask = new Task({
         title,
         description,
-        assignedTo,
+        assignedTo: finalAssignedTo,
         status,
         points,
         familyCode,

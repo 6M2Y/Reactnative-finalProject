@@ -1,3 +1,8 @@
+//---------------------------------
+//useTaskActions hook helps the taskdetailscreen functions. user the global user variable and navigation which are feed from the taskdetailscreen and
+//outputs   completeTask, handleClaim, handleCommentSend, handleDelete, reviewCompletedTask, pickImage,
+//-----------------------------------------------------------
+
 import { Alert } from 'react-native';
 import {
   addComment,
@@ -9,15 +14,16 @@ import {
 import { launchImageLibrary } from 'react-native-image-picker';
 import { uploadProof } from '../api/userApi';
 import { useTaskContext } from '../context/TaskContext'; // Import the useTaskContext hook
+import Toast from 'react-native-toast-message';
+import { useTranslation } from 'react-i18next';
 
 export const useTaskActions = ({ user, navigation }: any) => {
   const { updateTaskInState }: any = useTaskContext();
+  const { t } = useTranslation();
 
   //children mark task as complete
   const completeTask = async (currentTask_id: string) => {
-    Alert.alert('Task marked as completed!' + currentTask_id, '');
     try {
-      Alert.alert('Task marked as completed!' + currentTask_id, '');
       const updated = await updateTask(currentTask_id, {
         status: 'completed',
         completed: true,
@@ -52,7 +58,11 @@ export const useTaskActions = ({ user, navigation }: any) => {
         status: updated.status,
       }); // Update global state
 
-      Alert.alert('Task claimed successfully');
+      Toast.show({
+        type: 'success',
+        text1: `${t('toast.claim')}`,
+      });
+      navigation.goBack();
     } catch (error: any) {
       Alert.alert('Couldnt claim taks', error.message);
     }
@@ -95,7 +105,10 @@ export const useTaskActions = ({ user, navigation }: any) => {
         verified: updated.verified,
         status: updated.status,
       }); // Update global state
-      Alert.alert('Task verified');
+      Toast.show({
+        type: 'success',
+        text1: `${t('toast.verify')}`,
+      });
     } catch (error: any) {
       Alert.alert('Error trying to verify a task: ' + error.message);
     }
@@ -104,7 +117,6 @@ export const useTaskActions = ({ user, navigation }: any) => {
   // proof image
   const pickImage = async (taskId: string) => {
     try {
-      // 1. Pick from gallery
       const response = await launchImageLibrary({ mediaType: 'photo' });
 
       if (response.didCancel) return;
@@ -112,7 +124,6 @@ export const useTaskActions = ({ user, navigation }: any) => {
         Alert.alert('Image picker error', response.errorMessage);
         return;
       }
-
       const img = response.assets?.[0];
       if (!img) return;
 
@@ -130,7 +141,10 @@ export const useTaskActions = ({ user, navigation }: any) => {
       // 4. Update global state (KEY POINT!)
       updateTaskInState(taskId, { proofImg: uploaded.proofImg });
 
-      Alert.alert('Success', 'Proof image uploaded!');
+      Toast.show({
+        type: 'success',
+        text1: 'Proof image uploaded',
+      });
     } catch (err: any) {
       Alert.alert('Upload failed', err.message);
     }

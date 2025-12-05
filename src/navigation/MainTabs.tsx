@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unstable-nested-components */
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React, { useContext } from 'react';
 import HomeScreen from '../screens/HomeScreen';
@@ -41,9 +42,9 @@ const MainTabs = () => {
         // Override tabPress to reset params
         listeners={({ navigation }) => ({
           tabPress: () => {
-            navigation.navigate(user?.role == 'child' ? 'MyTasks' : 'Tasks', {
+            navigation.navigate(user?.role === 'child' ? 'MyTasks' : 'Tasks', {
               screen: 'TaskList',
-              params: { tasks: null, title: null }, // You can pass additional params if needed
+              params: { tasks: null, title: null },
             });
           },
         })}

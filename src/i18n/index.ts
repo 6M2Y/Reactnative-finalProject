@@ -1,6 +1,7 @@
+//--------------------------------------------------
+
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import * as RNLocalize from 'react-native-localize';
 import en from './languages/en.json';
 import no from './languages/no.json';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -17,28 +18,11 @@ async function getStoredLanguage() {
   }
 }
 
-// Detect best available language, compatible with all versions
-function getDeviceLanguage(): string {
-  try {
-    const locales = RNLocalize.getLocales();
-    if (Array.isArray(locales) && locales.length > 0) {
-      const tag = locales[0].languageTag;
-      if (['en', 'no'].includes(tag.split('-')[0])) {
-        return tag.split('-')[0]; // e.g. "en" from "en-US"
-      }
-    }
-  } catch (e) {
-    console.warn('Error detecting device language:', e);
-  }
-  return 'en';
-}
-
 export const setupI18n = async () => {
   const fallbackLang = 'en';
   const storedLang = await getStoredLanguage();
-  const deviceLang = getDeviceLanguage();
 
-  const initialLang = storedLang || deviceLang || fallbackLang;
+  const initialLang = storedLang ||  fallbackLang;
 
   await i18n.use(initReactI18next).init({
     lng: initialLang,
@@ -47,6 +31,7 @@ export const setupI18n = async () => {
       en: { translation: en },
       no: { translation: no },
     },
+    //allow html content in translation 
     interpolation: { escapeValue: false },
   });
 

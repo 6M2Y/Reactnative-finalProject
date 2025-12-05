@@ -23,12 +23,20 @@ export const ChildAction = ({
             color="#66bb6a"
             action={onComplete}
           />
-          <Buttons
+          {/*        <Buttons
             titleText={proofImg ? 'Change Proof Image' : 'Upload Proof Image'}
             color="#29b6f6"
             action={onPickImage}
-          />
+          /> */}
         </>
+      )}
+
+      {!isTaskUnassigned && (
+        <Buttons
+          titleText={proofImg ? 'Change Proof Image' : 'Upload Proof Image'}
+          color="#29b6f6"
+          action={onPickImage}
+        />
       )}
     </View>
   );

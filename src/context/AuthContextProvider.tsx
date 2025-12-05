@@ -8,8 +8,10 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { IUser } from '../types/user';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { setAuthToken, getClientApi } from '../api/apiClient';
+import { setAuthToken } from '../api/apiClient';
 import { loginUser, registerUser } from '../api/userApi';
+import Toast from 'react-native-toast-message';
+import { useTranslation } from 'react-i18next';
 
 interface AuthContextProps {
   user: IUser | null;
@@ -28,6 +30,7 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [token, setToken] = useState<string | null>(null);
+  const { t } = useTranslation();
 
   //load user from local  storage
   //auto login if token exists
@@ -61,6 +64,11 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
     familyCode: string,
   ) => {
     await registerUser(name, email, password, role, familyCode);
+    Toast.show({
+      type: 'success',
+      text1: `${t('toast.reg')}`,
+      visibilityTime: 4000,
+    });
   };
 
   //login user
@@ -79,7 +87,6 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  //test
   //log out user
   useEffect(() => {}, [user]);
 

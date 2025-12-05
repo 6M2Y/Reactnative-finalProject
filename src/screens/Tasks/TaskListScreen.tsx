@@ -5,7 +5,7 @@
 // Alså the tasks or mytask bottom tab navigates here
 //----------------------------------------------------------------------------
 
-import { useContext, useMemo } from 'react';
+import { useCallback, useContext, useMemo } from 'react';
 import {
   ActivityIndicator,
   Button,
@@ -19,15 +19,23 @@ import { TaskCard } from '../../components/Cards/TaskCard';
 import { useTaskContext } from '../../context/TaskContext';
 import { useTaskStat } from '../../hooks/useTaskStat';
 import { ThemeContext } from '../../context/ThemeContext';
+import { useFocusEffect } from '@react-navigation/native';
 
 export default function TaskListScreen({ route, navigation }: any) {
   const { user }: any = useContext(AuthContext); //get user from auth context
-  const { tasks, loading }: any = useTaskContext(); //get tasks from global state
+  const { tasks, fetchTasks, loading }: any = useTaskContext(); //get tasks from global state
 
   const filter = route.params?.filter || null; // Get filter passed via navigation
   const title = route.params?.title || null; // Get title passed via navigation
 
   const { theme } = useContext(ThemeContext);
+
+  useFocusEffect(
+    useCallback(() => {
+      fetchTasks();
+    }, []),
+  );
+
   //get computed task stats using custom hook
   const {
     myTasks,

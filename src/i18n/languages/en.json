@@ -59,5 +59,15 @@
   "recurrence": "Recurrence",
   "assign": "Assign To",
   "select":"Select Child"
+},
+"toast":{
+  "reg": "You are successfully registered",
+  "task":"Task created successfully",
+  "formTitle":"You need to provide a title",
+  "missing":"Missing fields: Please fill in all fields",
+  "childreg":"Child account is now created! Welcome",
+  "claim":"Task claimed successfully",
+  "login":"Sign-in successful! Welcome back",
+  "verify":"Task verified"
 }
 }

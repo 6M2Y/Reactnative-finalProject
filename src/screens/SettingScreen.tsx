@@ -79,7 +79,7 @@ const SettingScreen = () => {
                           { color: theme.textSecondary },
                         ]}
                       >
-                        <Ionicons name="person" size={14} /> {m.name} – ⭐{' '}
+                        <Ionicons name="person" size={14} /> {m.name} - ⭐{' '}
                         {m.points}
                       </Text>
                     ))

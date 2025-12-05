@@ -10,6 +10,7 @@ import {
 import { AuthContext } from '../../context/AuthContextProvider';
 import { ThemeContext } from '../../context/ThemeContext';
 import { useTranslation } from 'react-i18next';
+import Toast from 'react-native-toast-message';
 
 const Login = ({ navigation }: any) => {
   const { t } = useTranslation();
@@ -23,9 +24,15 @@ const Login = ({ navigation }: any) => {
   const handleLogin = async () => {
     try {
       const user = await login(email, password);
-      Alert.alert('Login Success', 'Welcome ' + user?.name);
-    } catch (error: any) {
-      Alert.alert('Login Error', error.message);
+      Toast.show({
+        type: 'success',
+        text1: `${t('toast.login')} ${user.name}`,
+      });
+    } catch {
+      Toast.show({
+        type: 'error',
+        text1: 'Error trying to login',
+      });
     }
   };
 

@@ -8,6 +8,7 @@ import { ITask } from '../types/task';
 import { IUser } from '../types/user';
 
 // Hook to compute task statistics
+//useMemo - Calculates and memoizes various task categories (e.g., overdue, assigned, waiting approval) based on the input tasks and user.
 export const useTaskStat = (tasks: ITask[], user: IUser) => {
   const stats = useMemo(() => {
     if (!user) {

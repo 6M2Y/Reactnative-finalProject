@@ -11,3 +11,30 @@ export const colors = {
   success: "#43A047",
   error: "#D32F2F",
 };
+export const lightTheme = {
+  background: '#F7F7F7',
+  card: '#FFFFFF',
+  text: '#222',
+  textSecondary: '#666',
+  border: '#E0E0E0',
+  icon: '#333',
+  accent: '#4A90E2',
+  btnColor_good: '#0d95f0ff',
+  btnColor_edit: '#4b84a5ff',
+  btnColor_del: '#e4716dff',
+  bar: '#904ba5ff',
+};
+
+export const darkTheme = {
+  background: '#181616ff',
+  card: '#1E1E1E',
+  text: '#FFFFFF',
+  textSecondary: '#BBBBBB',
+  border: '#333',
+  icon: '#DDD',
+  accent: '#4A90E2',
+  btnColor_good: '#2a4d64ff',
+  btnColor_edit: '#4b84a5ff',
+  btnColor_del: '#8a4745ff',
+  bar: '#904ba5ff',
+};

@@ -1,3 +1,6 @@
+//used in the taskdetailscreen
+//we get the comments of a task
+
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 
 export const CommentList = ({ comments }: { comments: any[] }) => {

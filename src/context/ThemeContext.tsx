@@ -4,36 +4,9 @@
 //----------------------------------------------
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createContext, useEffect, useState } from 'react';
+import { darkTheme, lightTheme } from '../utils/colors';
 
 export const ThemeContext = createContext(null);
-
-const lightTheme = {
-  background: '#F7F7F7',
-  card: '#FFFFFF',
-  text: '#222',
-  textSecondary: '#666',
-  border: '#E0E0E0',
-  icon: '#333',
-  accent: '#4A90E2',
-  btnColor_good: '#646967ff',
-  btnColor_edit: '#4b84a5ff',
-  btnColor_del: '#a54e4bff',
-  bar: '#904ba5ff',
-};
-
-const darkTheme = {
-  background: '#181616ff',
-  card: '#1E1E1E',
-  text: '#FFFFFF',
-  textSecondary: '#BBBBBB',
-  border: '#333',
-  icon: '#DDD',
-  accent: '#4A90E2',
-  btnColor_good: '#646967ff',
-  btnColor_edit: '#4b84a5ff',
-  btnColor_del: '#a54e4bff',
-  bar: '#904ba5ff',
-};
 
 export const ThemeContextProvider = ({ children }: any) => {
   const [isDark, setIsDark] = useState(false);

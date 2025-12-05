@@ -6,6 +6,7 @@ import AppNavigator from './src/navigation/AppNavigator';
 import { setupI18n } from './src/i18n';
 import { TaskContextProvider } from './src/context/TaskContext';
 import { ThemeContextProvider } from './src/context/ThemeContext';
+import Toast from 'react-native-toast-message';
 
 // Wrapper component to provide TaskContext only when user is available
 const AppWithTasks = () => {
@@ -19,6 +20,7 @@ const AppWithTasks = () => {
   return (
     <TaskContextProvider user={user}>
       <AppNavigator />
+      <Toast />
     </TaskContextProvider>
   );
 };
@@ -34,6 +36,7 @@ export default function App() {
 
   // Wait for i18n to be ready before rendering the app
   if (!appLanguageready) return null;
+
   return (
     <AuthContextProvider>
       <ThemeContextProvider>

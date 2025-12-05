@@ -45,7 +45,7 @@ export const addComment = async (taskId: string, comment: any) => {
 //claim task
 export const claimTask = async (taskId: string, userId: string) => {
   const apiClient = await getClientApi();
-  const response = await apiClient.post(`/tasks/${taskId}/claim`, {userId})
+  const response = await apiClient.put(`/tasks/${taskId}/claim`, {userId})
   return response.data
 }
 

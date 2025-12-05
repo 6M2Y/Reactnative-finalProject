@@ -70,7 +70,7 @@ export const TaskCard = ({
 
       <View style={styles.statusRow}>
         <Text style={[styles.statusText, { color: statusColor }]}>
-          {item.status.toUpperCase()}
+          {item.status?.toUpperCase()}
         </Text>
 
         <View style={styles.verificationBadge}>

@@ -24,8 +24,9 @@ export default function AppNavigator() {
   }, []);
 
   // Return a loading screen if onboarding check isn't done yet
-  if (onboardingShown === null) return null;
+  //if (onboardingShown === null) return null;
 
+  //navbar theme setting
   const navTheme = {
     ...DefaultTheme,
     dark: isDark,
@@ -44,7 +45,14 @@ export default function AppNavigator() {
       <stack.Navigator screenOptions={{ headerShown: false }}>
         {/* CASE 1: Show Onboarding if not shown yet */}
         {!onboardingShown ? (
-          <stack.Screen name="Onboarding" component={OnboardingScreen} />
+          <stack.Screen name="Onboarding">
+            {props => (
+              <OnboardingScreen
+                {...props}
+                setOnboardingShown={setonboardingShown}
+              />
+            )}
+          </stack.Screen>
         ) : /* CASE 2: Onboarding is done, check Authentication */
         user ? (
           // If user exists, ONLY render MainTabs.

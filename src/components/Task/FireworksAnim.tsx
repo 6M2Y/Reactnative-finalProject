@@ -1,3 +1,5 @@
+//LottieView animation
+
 import React, { useEffect, useRef } from 'react';
 import { Animated, StyleSheet } from 'react-native';
 import LottieView from 'lottie-react-native';

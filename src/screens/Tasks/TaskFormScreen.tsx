@@ -19,11 +19,12 @@ const TaskFormScreen = ({ navigation }: any) => {
   const { formData, setField, toggleDay, validateAndSubmitForm } = useTaskForm({
     user,
     navigation,
+    t,
   });
 
   const { theme }: any = useContext(ThemeContext);
 
-  const { members, loading } = useFamilyMembers(user?.familyCode);
+  const { members } = useFamilyMembers(user?.familyCode);
 
   return (
     <ScrollView>
@@ -81,32 +82,25 @@ const TaskFormScreen = ({ navigation }: any) => {
         >
           {t('taskForm.assign')}:
         </Text>
-        {loading ? (
-          <Text>Loading...</Text>
-        ) : (
-          <Picker
-            selectedValue={formData.assignedTo}
-            onValueChange={(value: string) => setField('assignedTo', value)}
-            style={[
-              styles.picker,
-              {
-                backgroundColor: theme.card,
-                borderColor: theme.border,
-                color: theme.textSecondary,
-              },
-            ]}
-            dropdownIconColor={theme.text}
-          >
-            <Picker.Item label={t('taskForm.select')} value="" />
-            {members.map(child => (
-              <Picker.Item
-                key={child._id}
-                label={child.name}
-                value={child._id}
-              />
-            ))}
-          </Picker>
-        )}
+        <Picker
+          selectedValue={formData.assignedTo}
+          onValueChange={(value: string) => setField('assignedTo', value)}
+          style={[
+            styles.picker,
+            {
+              backgroundColor: theme.card,
+              borderColor: theme.border,
+              color: theme.textSecondary,
+            },
+          ]}
+          dropdownIconColor={theme.text}
+        >
+          <Picker.Item label={t('taskForm.select')} value="" />
+          {members.map(child => (
+            <Picker.Item key={child._id} label={child.name} value={child._id} />
+          ))}
+        </Picker>
+
         <LabeledInput
           label="FamilyCode"
           value={user?.familyCode}

@@ -9,10 +9,13 @@ import {
 } from 'react-native';
 import { AuthContext } from '../context/AuthContextProvider';
 import { ThemeContext } from '../context/ThemeContext';
+import Toast from 'react-native-toast-message';
+import { useTranslation } from 'react-i18next';
 
 export default function AddChildScreen({ navigation }: any) {
   const { user, register }: any = useContext(AuthContext);
   const { theme }: any = useContext(ThemeContext);
+  const { t } = useTranslation();
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -20,13 +23,20 @@ export default function AddChildScreen({ navigation }: any) {
 
   const handleAddChild = async () => {
     if (!name || !email || !password) {
-      Alert.alert('Missing fields', 'Please fill in all fields.');
+      Toast.show({
+        type: 'error',
+        text1: 'Missing fields: Please fill in all fields.',
+      });
+
       return;
     }
 
     try {
       await register(name, email, password, 'child', user.familyCode);
-      Alert.alert('Success', 'Child account created');
+      Toast.show({
+        type: 'success',
+        text1: `${t('toast.childreg')} ${name}`,
+      });
       navigation.goBack();
     } catch (err: any) {
       Alert.alert('Error', err.message || 'Unable to add child');

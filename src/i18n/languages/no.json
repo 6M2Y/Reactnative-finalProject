@@ -44,5 +44,15 @@
   "recurrence": "Gjentakelse",
   "assign": "Tildel Til",
   "select":"Velg Barn"
+},
+"toast":{
+  "reg": "Registreringen vellykket",
+  "task":"Oppgave opprettelse vellykket",
+  "formTitle":"Du må angi en tittel",
+  "missing":"Manglende felt: Vennligst fyll ut alle feltene.",
+  "childreg":"Barnekontoen er Opprettet! Velkommen",
+  "claim": "Oppgaven er tildelt",
+  "login":"Pålogging vellykket! Velkommen tilbake",
+  "verify": "Oppgaven er godkjent"
 }
 }

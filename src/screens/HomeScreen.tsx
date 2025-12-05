@@ -12,7 +12,7 @@ import { useTaskContext } from '../context/TaskContext';
 
 const HomeScreen = ({ navigation }: any) => {
   const { user }: any = useContext(AuthContext);
-  const { theme } = useContext(ThemeContext); // ← Now using theme
+  const { theme }: any = useContext(ThemeContext); // ← Now using theme
   const { t } = useTranslation();
   const { tasks, fetchTasks, loading }: any = useTaskContext();
 
@@ -116,7 +116,7 @@ const HomeScreen = ({ navigation }: any) => {
         />
       ) : (
         <>
-          {/* STAT CARDS */}
+          {/* STAT CARDS for parents or childern */}
           <View style={styles.grid}>
             {(user?.role === 'parent' ? parentCards : childCards).map(
               (card, index) => (

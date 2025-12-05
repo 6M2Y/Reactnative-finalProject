@@ -13,13 +13,13 @@ import { slides } from '../utils/slides';
 
 const { width } = Dimensions.get('window');
 
-const OnboardingScreen = ({ navigation }: any) => {
+const OnboardingScreen = ({ setOnboardingShown }: any) => {
   const [index, setIndex] = useState(0);
   const flatListRef = useRef<FlatList>(null);
 
   const handleDone = async () => {
     await AsyncStorage.setItem('onboardingShown', 'true');
-    navigation.replace('AuthStack');
+    setOnboardingShown(true);
   };
 
   const handleNext = () => {

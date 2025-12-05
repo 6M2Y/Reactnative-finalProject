@@ -58,8 +58,6 @@ const TaskDetailScreen = ({ route, navigation }: any) => {
   const isParent = user.role === 'parent';
   const isTaskUnassigned = !currentTask.assignedTo;
   const isTaskVerified = currentTask.verified;
-  const isMine =
-    currentTask.assignedTo && currentTask.assignedTo._id === user._id;
   const isTaskCompleted = currentTask.status === 'completed';
 
   return (

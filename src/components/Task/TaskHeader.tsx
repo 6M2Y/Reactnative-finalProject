@@ -6,7 +6,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 // Helper function to get status colors
 const getStatusStyle = (status: string) => {
-  switch (status.toLowerCase()) {
+  switch (status?.toLowerCase()) {
     case 'completed':
       return { backgroundColor: '#4CAF50', color: '#FFFFFF' }; // Green
     case 'assigned':
@@ -28,10 +28,10 @@ export const TaskHeader = ({ task, theme }: any) => {
     <View
       style={[styles.headerContainer, { backgroundColor: theme.background }]}
     >
-      {/* 1. Main Title */}
+      {/* Main Title */}
       <Text style={styles.mainTitle}>{task.title}</Text>
 
-      {/* 2. Status Badge */}
+      {/* Status Badge */}
       <View
         style={[
           styles.statusBadge,
@@ -39,11 +39,11 @@ export const TaskHeader = ({ task, theme }: any) => {
         ]}
       >
         <Text style={[styles.statusText, { color: statusStyles.color }]}>
-          {task.status.toUpperCase()}
+          {task.status?.toUpperCase()}
         </Text>
       </View>
 
-      {/* 3. Primary Details (Assigned To & Points) */}
+      {/* Assigned To & Points */}
       <View style={styles.primaryDetailsRow}>
         <View style={styles.detailItem}>
           <Icon name="person-outline" size={16} color="#444" />
@@ -71,7 +71,7 @@ export const TaskHeader = ({ task, theme }: any) => {
         </Text>
       </View>
 
-      {/* 5. Due Date (Secondary Detail) */}
+      {/* Due Date */}
       <View style={styles.dueDateRow}>
         <Icon name="calendar-outline" size={14} color="#777" />
         <Text style={styles.dueDateText}>

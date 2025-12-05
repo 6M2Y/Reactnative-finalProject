@@ -61,11 +61,3 @@ export const getFamilyMembers = async (familyCode: string) => {
   const response = await apiClient.get(`/family/${familyCode}`);
   return response;
 };
-/* export const loginUser = async (email: string, password: string) => {
-    const apiClient = await getClientApi();
-    const response = await apiClient.post('/auth/login', {
-        email,
-        password,
-    });
-    return response;
-}; */

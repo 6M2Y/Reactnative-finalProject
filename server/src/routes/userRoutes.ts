@@ -7,14 +7,7 @@ const userRouter = express.Router();
 
 // Get family members (children)
 userRouter.get('/:familyCode', async (req, res) => {
- /*  const { familyCode } = req.params;
 
-  try {
-    const members = await User.find({ familyCode });
-    res.json(members);
-  } catch (error: any) {
-    res.status(500).json({ message: 'Failed to load family members', error: error.message });
-  } */
    try {
     const { familyCode } = req.params;
 
@@ -39,22 +32,6 @@ userRouter.get('/:familyCode', async (req, res) => {
     res.status(500).json({ message: e.message });
   }
 });
-
-//fetch available tasked using family code
-userRouter.get('/:familyCode/available', async (req: Request, res: Response) => {
-  const { familyCode } = req.params
-  
-  try {
-    const task = await Task.find({
-      familyCode,
-      assignedTo:null
-    })
-
-    res.json(task)
-  } catch (error: any) {
-    res.status(500).json({message:"Error while fetching available tasks", error:error.message})
-  }
-})
 
 //fetch available tasked using family code
 userRouter.get('/:familyCode/available', async (req: Request, res: Response) => {

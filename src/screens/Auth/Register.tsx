@@ -11,6 +11,7 @@ import { AuthContext } from '../../context/AuthContextProvider';
 import { ThemeContext } from '../../context/ThemeContext';
 import { Picker } from '@react-native-picker/picker';
 import { useTranslation } from 'react-i18next';
+import Toast from 'react-native-toast-message';
 
 const Register = ({ navigation }: any) => {
   const { register }: any = useContext(AuthContext);
@@ -26,7 +27,10 @@ const Register = ({ navigation }: any) => {
   const handleRegister = async () => {
     try {
       await register(name, email, password, role, familyCode);
-      Alert.alert(t('register.success'));
+      Toast.show({
+        type: 'success',
+        text1: `${t('toast.reg')}`,
+      });
       navigation.navigate('Login');
     } catch (error: any) {
       Alert.alert(t('register.error'), error.message);

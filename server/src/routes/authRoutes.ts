@@ -20,7 +20,8 @@ authRoutes.post('/register', async (req, res) => {
         if (existingUser) {
             return res.status(400).json({ message: 'User already exists' });
         }
-        let newFamilyCode = familyCode;
+        
+        let newFamilyCode = familyCode; //we need to create a code for a family
         if (role === "parent")
         {
             //create familycode
@@ -31,7 +32,7 @@ authRoutes.post('/register', async (req, res) => {
             if (!parent) //if parent doesnt exists
             {
                 return res.status(400).json({message:'Invalid familycode. Parent not found'})
-                }
+            }
         }
         //create new user
         const newUser = new User({

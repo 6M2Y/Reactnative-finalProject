@@ -81,7 +81,7 @@ React Native • TypeScript • Axios • AsyncStorage • react-navigation
 
 #### Backend
 
-Node.js • Express • MongoDB • Mongoose • JWT
+Node.js • Express • MongoDB • Mongoose • JWT • multer
 
 Sensors react-native-geolocation-service, i18n, camera
 UI/UX Lottie animations • Custom components

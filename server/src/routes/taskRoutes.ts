@@ -99,9 +99,10 @@ taskRoutes.put('/:id/verify', async (req: Request, res: Response): Promise<void>
             res.status(404).json({ message: 'Task not found' });
             return;
         }
-    
+    //we add point to children when the tasks are verified
         if(verifiedTask.assignedTo)
-        { // Check if task was found and updated
+        {
+            // Check if task was found and updated
             const child = await User.findById(verifiedTask.assignedTo);
             if (child) {
                 const taskPoints = Number(verifiedTask.points) || 0;
@@ -137,7 +138,6 @@ taskRoutes.post('/:id/comments', async (req: Request, res: Response) => {
     if (!message) return res.status(400).json({ message: "comment message is missing" })
     
     try {
-        
         const task = await Task.findById(id) as ITask |null; //find the task id
         if (!task) return res.status(400).json({ message: "Task not found, comment is not added" }); //defensive programming here
         const newComment = {

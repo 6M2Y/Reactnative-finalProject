@@ -33,7 +33,9 @@ Comment thread on each task
 
 Parent ↔ Child conversation
 
-### GPS & Maps (Sensor Feature)
+### Sensor Feature
+
+Children can upload or take a picture as a proof of completion of their task
 
 Children automatically send last known GPS location [Require google API, underdevelopment]
 
@@ -73,10 +75,15 @@ REST API for tasks, users, comments, family groups
 
 ## Tech Stack
 
-Layer Technologies
-Mobile App React Native • TypeScript • Axios • AsyncStorage • react-navigation
-Backend Node.js • Express • MongoDB • Mongoose • JWT
-Sensors react-native-geolocation-service
+#### Mobile App
+
+React Native • TypeScript • Axios • AsyncStorage • react-navigation
+
+#### Backend
+
+Node.js • Express • MongoDB • Mongoose • JWT
+
+Sensors react-native-geolocation-service, i18n, camera
 UI/UX Lottie animations • Custom components
 
 # How to Run

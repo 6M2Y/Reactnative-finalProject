@@ -102,3 +102,131 @@ Make sure backend URL is updated in apiClient.ts as well as environment variable
 ```
 
 ```
+
+## Folder structure
+
+<pre>
+FAMILYFLOW/
+├── server/
+│ ├── node_modules/
+│ ├── src/
+│ │ ├── models/
+│ │ │ ├── comment.ts
+│ │ │ ├── Task.ts
+│ │ │ └── userModel.ts
+│ │ ├── routes/
+│ │ │ ├── authRoutes.ts
+│ │ │ ├── locationRoutes.ts
+│ │ │ ├── taskRoutes.ts
+│ │ │ ├── uploadRoutes.ts
+│ │ │ └── userRoutes.ts
+│ │ ├── types/
+│ │ │ ├── commentTypes.ts
+│ │ │ ├── tasktypes.ts
+│ │ │ └── userTypes.ts
+│ │ └── server.ts
+│ ├── uploads/
+│ │ ├── 1763702903004-1000016780.jpg
+│ │ ├── 1763703069599-1000016779.jpg
+│ │ └── 1764538046594-1000016880.jpg
+│ ├── .env
+│ ├── nodemon.json
+│ ├── package-lock.json
+│ ├── package.json
+│ └── tsconfig.json
+│
+├── src/
+│ ├── api/
+│ │ ├── apiClient.ts
+│ │ ├── locationApi.ts
+│ │ ├── taskApi.ts
+│ │ └── userApi.ts
+│
+│ ├── assets/
+│ │ ├── animations/
+│ │ │ └── fireworks.json
+│ │ ├── images/
+│ │ │ ├── avatar1.png
+│ │ │ └── avatar2.png
+│ │ └── onboarding/
+│ │ ├── fam.png
+│ │ ├── fam2.png
+│ │ └── fam3.png
+│
+│ ├── components/
+│ │ ├── Cards/
+│ │ │ ├── StatCard.tsx
+│ │ │ └── TaskCard.tsx
+│ │ ├── Task/
+│ │ │ ├── ChildAction.tsx
+│ │ │ ├── CommentList.tsx
+│ │ │ ├── DatePickerInput.tsx
+│ │ │ ├── FireworksAnim.tsx
+│ │ │ ├── ParentAction.tsx
+│ │ │ ├── ProofImage.tsx
+│ │ │ └── TaskHeader.tsx
+│ │ ├── TaskForm/
+│ │ │ ├── DaySelector.tsx
+│ │ │ ├── LabeledInput.tsx
+│ │ │ └── RecurrencePicker.tsx
+│ │ └── Buttons.tsx
+│
+│ ├── context/
+│ │ ├── AuthContextProvider.tsx
+│ │ ├── TaskContext.tsx
+│ │ └── ThemeContext.tsx
+│
+│ ├── hooks/
+│ │ ├── useFamilyMembers.ts
+│ │ ├── useTaskActions.ts
+│ │ ├── useTaskForm.ts
+│ │ ├── useTaskStat.ts
+│ │ └── useUpdateLocation.ts
+│
+│ ├── i18n/
+│ │ ├── languages/
+│ │ │ ├── en.json
+│ │ │ └── no.json
+│ │ └── index.ts
+│
+│ ├── navigation/
+│ │ ├── AppNavigator.tsx
+│ │ ├── AuthStack.tsx
+│ │ ├── FamilyStackNavigator.tsx
+│ │ ├── MainTabs.tsx
+│ │ └── TaskStackNavigator.tsx
+│
+│ ├── screens/
+│ │ ├── Auth/
+│ │ │ ├── Login.tsx
+│ │ │ └── Register.tsx
+│ │ ├── Tasks/
+│ │ │ ├── TaskDetailScreen.tsx
+│ │ │ ├── TaskFormScreen.tsx
+│ │ │ ├── TaskListScreen.tsx
+│ │ │ ├── UnassignedTasksScreen.tsx
+│ │ │ ├── AddChildScreen.tsx
+│ │ │ ├── ChildLocationMap.tsx
+│ │ │ ├── ChildLocationScreen.tsx
+│ │ │ ├── HomeScreen.tsx
+│ │ │ ├── OnboardingScreen.tsx
+│ │ │ ├── SettingScreen.tsx
+│ │ │ └── TaskScreen.tsx
+│
+│ ├── services/
+│ │ ├── task.ts
+│ │ └── user.ts
+│
+│ ├── utils/
+│ │ ├── colors.ts
+│ │ └── slides.ts
+│
+│ ├── App.tsx
+│ ├── app.json
+│ ├── .eslintrc.js
+│ ├── .gitignore
+│ ├── .prettierrc.js
+│ └── .watchmanconfig
+│
+└── package.json
+</pre>

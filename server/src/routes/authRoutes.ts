@@ -89,7 +89,6 @@ authRoutes.post('/login', async (req, res) => {
                 point: user.points
             }
         });
-        console.log(`Login success for: ${user.email}`);
     } catch (error: any) {
         res.status(500).json({
             message: 'Server error',

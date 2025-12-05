@@ -14,7 +14,7 @@ import Toast from 'react-native-toast-message';
 
 const Login = ({ navigation }: any) => {
   const { t } = useTranslation();
-  const { login }: any = useContext(AuthContext); //
+  const { login }: any = useContext(AuthContext);
   const { theme }: any = useContext(ThemeContext);
 
   const [email, setEmail] = useState('');
